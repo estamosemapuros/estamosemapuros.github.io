@@ -562,7 +562,7 @@
         doc.setFont("helvetica", "normal");
         doc.setFontSize(8);
 
-        doc.text("Número", 178, 33, {
+        doc.text("Número de telemóvel", 178, 33, {
           align: "center"
         });
 
@@ -605,7 +605,7 @@
           align: "center"
         });
 
-        /* Nome do ficheiro
+        //Nome do ficheiro
         const safeName = fullName
           .normalize("NFD")
           .replace(/[\u0300-\u036f]/g, "")
@@ -613,12 +613,12 @@
           .replace(/^_|_$/g, "")
           .toUpperCase();
 
-        doc.save(`APUROS_16_${safeName}.pdf`); */
+        doc.save(`APUROS_16_${safeName}.pdf`);
 
-        const pdfBlob = doc.output("blob");
+        /*const pdfBlob = doc.output("blob");
         const pdfUrl = URL.createObjectURL(pdfBlob);
 
-        window.open(pdfUrl, "_blank");
+        window.open(pdfUrl, "_blank");*/
       };
 
       logo.src = "./logo.png";
