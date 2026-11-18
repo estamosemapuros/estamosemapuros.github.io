@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Bilhetes APUROS 16</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <!-- Google Fonts: Archivo -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+      background-color: #111111;
+      color: #111111;
+      font-family: "Archivo", sans-serif;
+    }
+
+    .container {
+      width: min(100%, 32rem);
+      padding: 1.75rem;
+      background-color: #ffffff;
+      border: 1px solid #cccccc;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .logo {
+      display: block;
+      width: min(100%, 6rem);
+      height: auto;
+      max-height: 5rem;
+      object-fit: contain;
+      margin: 0 auto 1.25rem;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.06em;
+      text-transform: uppercase;
+    }
+
+    .separator {
+      border: 0;
+      border-top: 1px solid #cccccc;
+      margin: 1.5rem 0;
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    input,
+    select {
+      display: block;
+      width: 100%;
+      padding: 0.8rem;
+      font-family: "Archivo", sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #111111;
+      background: #ffffff;
+      border: 1px solid #999999;
+      border-radius: 0;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: #111111;
+      outline: 1px solid #111111;
+    }
+
+    input::placeholder {
+      color: #999999;
+    }
+
+    select {
+      cursor: pointer;
+    }
+
+    .extra-info {
+      margin: 0.5rem 0 0;
+      font-size: 0.72rem;
+      line-height: 1.5;
+      color: #666666;
+    }
+
+    .cart-summary {
+      padding: 1rem 0;
+      margin-bottom: 0;
+      border-top: 1px solid #111111;
+    }
+
+    .cart-title {
+      margin: 0 0 0.85rem;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 0.6rem;
+      font-size: 0.85rem;
+    }
+
+    .cart-item-label {
+      color: #555555;
+    }
+
+    .cart-item-value {
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .cart-discount {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 0.85rem;
+      margin-bottom: 0.6rem;
+      padding-top: 0.85rem;
+      border-top: 1px dashed #d62828;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #d62828;
+    }
+
+    .cart-discount span:last-child {
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .total-price {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 0;
+      margin-bottom: 1.25rem;
+      border-top: 1px solid #111111;
+      border-bottom: 1px solid #111111;
+    }
+
+    .total-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .total-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.05em;
+      white-space: nowrap;
+    }
+
+    .original-price {
+      margin-right: 0.4rem;
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: #999999;
+      letter-spacing: 0;
+    }
+
+    button {
+      display: block;
+      width: 100%;
+      padding: 0.9rem;
+      font-family: "Archivo", sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #ffffff;
+      background: #111111;
+      border: 1px solid #111111;
+      border-radius: 0;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    button:hover {
+      background: #ffffff;
+      color: #111111;
+    }
+
+    button:focus-visible {
+      outline: 2px solid #111111;
+      outline-offset: 3px;
+    }
+
+    @media (max-width: 30rem) {
+      body {
+        padding: 0.75rem;
+      }
+
+      .container {
+        padding: 1.2rem;
+      }
+
+      .logo {
+        width: min(100%, 5rem);
+      }
+
+      .header h1 {
+        font-size: 1.75rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="container">
+
+    <header class="header">
+      <img src="./logo.png" alt="Logótipo APUROS" class="logo">
+      <h1>Bilhetes APUROS 16</h1>
+    </header>
+
+    <hr class="separator">
+
+    <div class="form-group">
+      <label for="fullName">Nome e apelido</label>
+      <input type="text" id="fullName" autocomplete="name" placeholder="Introduz o teu nome e apelido..." required>
+    </div>
+
+    <div class="form-group">
+      <label for="quantity">Quantidade de bilhetes</label>
+      <select id="quantity">
+        <option value="1">1 bilhete</option>
+        <option value="2">2 bilhetes</option>
+        <option value="3">3 bilhetes</option>
+        <option value="4">4 bilhetes</option>
+        <option value="5">5 bilhetes</option>
+      </select>
+
+      <p class="extra-info">
+        Desconto na compra de 3 ou mais bilhetes.
+        <br>
+        Cada bilhete inclui oferta de 1 autocolante APUROS à entrada do evento.
+      </p>
+    </div>
+
+    <!-- Quantidade de entradas na rifa -->
+    <div class="form-group">
+      <label for="raffleQuantity">Quantidade de entradas na rifa</label>
+      <select id="raffleQuantity">
+        <option value="0">Não participar</option>
+        <option value="1">1 entrada na rifa</option>
+        <option value="2">2 entradas na rifa</option>
+        <option value="3">3 entradas na rifa</option>
+        <option value="4">4 entradas na rifa</option>
+        <option value="5">5 entradas na rifa</option>
+      </select>
+
+      <p class="extra-info">
+        Sorteio de T-shirt, Tote Bag e Poster APUROS.
+      </p>
+    </div>
+
+    <div class="cart-summary" aria-live="polite">
+      <p class="cart-title">Resumo da compra</p>
+
+      <div class="cart-item">
+        <span class="cart-item-label" id="ticketSummary">
+          Bilhetes (1 × 9 EUR)
+        </span>
+        <span class="cart-item-value" id="ticketSubtotal">9 EUR</span>
+      </div>
+
+      <div class="cart-item" id="raffleRow">
+        <span class="cart-item-label" id="raffleSummary">
+          Entradas na rifa (0 × 1 EUR)
+        </span>
+        <span class="cart-item-value" id="raffleSubtotal">0 EUR</span>
+      </div>
+
+      <div class="cart-discount" id="discountRow" style="display: none;">
+        <span>Desconto</span>
+        <span id="discountValue">-1 EUR</span>
+      </div>
+    </div>
+
+    <!-- Preço total -->
+    <div class="total-price">
+      <span class="total-label">Preço total</span>
+      <span class="total-value" id="totalPrice" aria-live="polite">9 EUR</span>
+    </div>
+
+    <button type="button" id="generatePdf">
+      Avançar
+    </button>
+
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <script>
+    "use strict";
+
+    const fullNameInput = document.getElementById("fullName");
+    const quantitySelect = document.getElementById("quantity");
+    const raffleQuantitySelect = document.getElementById("raffleQuantity");
+    const totalPriceDisplay = document.getElementById("totalPrice");
+    const generatePdfButton = document.getElementById("generatePdf");
+
+    const ticketSummary = document.getElementById("ticketSummary");
+    const ticketSubtotal = document.getElementById("ticketSubtotal");
+    const raffleSummary = document.getElementById("raffleSummary");
+    const raffleSubtotal = document.getElementById("raffleSubtotal");
+    const raffleRow = document.getElementById("raffleRow");
+    const discountRow = document.getElementById("discountRow");
+    const discountValue = document.getElementById("discountValue");
+
+    const RAFFLE_PRICE = 1;
+    const STANDARD_TICKET_PRICE = 9;
+
+    const ticketPrices = {
+      1: 9,
+      2: 18,
+      3: 26,
+      4: 34,
+      5: 42
+    };
+
+    function getPurchaseDetails() {
+      const quantity = Number(quantitySelect.value);
+      const raffleQuantity = Number(raffleQuantitySelect.value);
+      const ticketTotal = ticketPrices[quantity];
+      const originalPrice = quantity * STANDARD_TICKET_PRICE;
+      const discount = originalPrice - ticketTotal;
+      const raffleTotal = raffleQuantity * RAFFLE_PRICE;
+
+      return {
+        quantity,
+        raffleQuantity,
+        ticketTotal,
+        originalPrice,
+        discount,
+        raffleTotal,
+        totalPrice: ticketTotal + raffleTotal
+      };
+    }
+
+    function updateTotalPrice() {
+      const {
+        quantity,
+        raffleQuantity,
+        originalPrice,
+        discount,
+        raffleTotal,
+        totalPrice
+      } = getPurchaseDetails();
+
+      ticketSummary.textContent =
+        `Bilhetes (${quantity} × ${STANDARD_TICKET_PRICE} EUR)`;
+      ticketSubtotal.textContent = `${originalPrice} EUR`;
+
+      raffleSummary.textContent =
+        `Entradas na rifa (${raffleQuantity} × ${RAFFLE_PRICE} EUR)`;
+      raffleSubtotal.textContent = `${raffleTotal} EUR`;
+
+      // Esconder a linha das entradas na rifa quando a opção "não participar" está selecionada
+      raffleRow.style.display = raffleQuantity > 0 ? "flex" : "none";
+
+      // Atualizar desconto
+      discountRow.style.display = discount > 0 ? "flex" : "none";
+      if (discount > 0) {
+        discountValue.textContent = `-${discount} EUR`;
+      }
+
+      totalPriceDisplay.textContent = `${totalPrice} EUR`;
+    }
+
+    quantitySelect.addEventListener("change", updateTotalPrice);
+    raffleQuantitySelect.addEventListener("change", updateTotalPrice);
+
+    function generatePdf() {
+      const fullName = fullNameInput.value.trim();
+
+      if (!fullName) {
+        alert("Por favor, introduz o teu nome e apelido.");
+        fullNameInput.focus();
+        return;
+      }
+
+      const {
+        quantity,
+        raffleQuantity,
+        originalPrice,
+        discount,
+        raffleTotal,
+        totalPrice
+      } = getPurchaseDetails();
+
+      const { jsPDF } = window.jspdf;
+
+      const doc = new jsPDF({
+        orientation: "landscape",
+        unit: "mm",
+        format: [210, 105]
+      });
+
+      const pageWidth = 210;
+      const pageHeight = 105;
+
+      doc.setFillColor(255, 255, 255);
+      doc.rect(0, 0, pageWidth, pageHeight, "F");
+
+      doc.setDrawColor(20, 20, 20);
+      doc.setLineWidth(0.4);
+      doc.rect(5, 5, 200, 95);
+
+      const logo = new Image();
+
+      logo.onload = function () {
+        // Logótipo
+        doc.addImage(logo, "PNG", 12, 10, 20, 20);
+
+        // Cabeçalho
+        doc.setTextColor(17, 17, 17);
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(17);
+        doc.text("BILHETE APUROS 16", 37, 22);
+
+        // Separador
+        doc.setDrawColor(190, 190, 190);
+        doc.setLineWidth(0.3);
+        doc.line(12, 34, 143, 34);
+
+        // Nome
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(8);
+        doc.text("NOME", 12, 43);
+
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(11);
+
+        const nameLines = doc.splitTextToSize(fullName, 120);
+        doc.text(nameLines.slice(0, 2), 12, 50);
+
+        // Separador do resumo
+        doc.setDrawColor(190, 190, 190);
+        doc.line(12, 57, 143, 57);
+
+        // Resumo da compra
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(8);
+        doc.setTextColor(17, 17, 17);
+
+        let summaryY = 65;
+
+        // Bilhetes
+        doc.text(
+          `Bilhetes (${quantity} × ${STANDARD_TICKET_PRICE} EUR)`,
+          12,
+          summaryY
+        );
+
+        doc.text(`${originalPrice} EUR`, 143, summaryY, {
+          align: "right"
+        });
+
+        summaryY += 7;
+
+        // Entradas na rifa
+        if (raffleQuantity > 0) {
+          doc.text(
+            `Entradas na rifa (${raffleQuantity} × ${RAFFLE_PRICE} EUR)`,
+            12,
+            summaryY
+          );
+
+          doc.text(`${raffleTotal} EUR`, 143, summaryY, {
+            align: "right"
+          });
+
+          summaryY += 7;
+        }
+
+        // Desconto (no final do resumo)
+        if (discount > 0) {
+          doc.setTextColor(190, 35, 35);
+          doc.text("Desconto", 12, summaryY);
+          doc.text(`-${discount} EUR`, 143, summaryY, {
+            align: "right"
+          });
+
+          summaryY += 7;
+        }
+
+        // Total
+        doc.setDrawColor(17, 17, 17);
+        doc.setLineWidth(0.4);
+        doc.line(12, summaryY - 3, 143, summaryY - 3);
+
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(10);
+        doc.setTextColor(17, 17, 17);
+
+        doc.text("TOTAL", 12, summaryY + 4);
+        doc.text(`${totalPrice} EUR`, 143, summaryY + 4, {
+          align: "right"
+        });
+
+        // Linha vertical destacável
+        doc.setDrawColor(170, 170, 170);
+        doc.setLineWidth(0.4);
+        doc.setLineDashPattern([2, 2], 0);
+        doc.line(151, 8, 151, 97);
+        doc.setLineDashPattern([], 0);
+
+        // Secção de transferência
+        doc.setTextColor(17, 17, 17);
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(10);
+
+        doc.text("TRANSFERÊNCIA MB WAY", 178, 22, {
+          align: "center"
+        });
+
+        // Número
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(8);
+
+        doc.text("Número", 178, 33, {
+          align: "center"
+        });
+
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(12);
+
+        doc.text("912282424", 178, 41, {
+          align: "center"
+        });
+
+        // Descrição
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(8);
+
+        doc.text("Descrição", 178, 52, {
+          align: "center"
+        });
+
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(10);
+
+        const description = `APUROS 16 - ${fullName}`;
+        const descriptionLines = doc.splitTextToSize(description, 42);
+
+        doc.text(descriptionLines.slice(0, 2), 178, 60, {
+          align: "center"
+        });
+
+        // Aviso de validade — mesma cor do desconto
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(7);
+        doc.setTextColor(190, 35, 35);
+
+        const warning =
+          "Os bilhetes e as entradas na rifa referentes a este documento só são válidos após a realização da transferência MB WAY.";
+
+        const warningLines = doc.splitTextToSize(warning, 42);
+
+        doc.text(warningLines, 178, 77, {
+          align: "center"
+        });
+
+        /* Nome do ficheiro
+        const safeName = fullName
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .replace(/[^a-zA-Z0-9]+/g, "_")
+          .replace(/^_|_$/g, "")
+          .toUpperCase();
+
+        doc.save(`APUROS_16_${safeName}.pdf`); */
+
+        const pdfBlob = doc.output("blob");
+        const pdfUrl = URL.createObjectURL(pdfBlob);
+
+        window.open(pdfUrl, "_blank");
+      };
+
+      logo.src = "./logo.png";
+    }
+
+    generatePdfButton.addEventListener("click", generatePdf);
+
+    // Preço inicial
+    updateTotalPrice();
+  </script>
+
+</body>
+
+</html>
