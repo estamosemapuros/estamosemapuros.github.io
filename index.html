@@ -13,6 +13,19 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+  <!-- MailerLite Universal -->
+  <script>
+    (function (w, d, e, u, f, l, n) {
+      w[f] = w[f] || function () {
+        (w[f].q = w[f].q || [])
+          .push(arguments);
+      }, l = d.createElement(e), l.async = 1, l.src = u,
+        n = d.getElementsByTagName(e)[0], n.parentNode.insertBefore(l, n);
+    })
+      (window, document, 'script', 'https://assets.mailerlite.com/js/universal.js', 'ml');
+    ml('account', '2783622');
+  </script>
+
   <style>
     * {
       box-sizing: border-box;
@@ -227,6 +240,33 @@
       outline-offset: 3px;
     }
 
+    .footer {
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid #cccccc;
+      text-align: center;
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.06rem;
+      text-transform: uppercase;
+    }
+
+    .ml-onclick-form {
+      color: #111111;
+      text-decoration: underline;
+      text-underline-offset: 0.15em;
+      cursor: pointer;
+    }
+
+    .ml-onclick-form:hover {
+      color: #666666;
+    }
+
+    .ml-onclick-form:focus-visible {
+      outline: 2px solid #111111;
+      outline-offset: 3px;
+    }
+
     @media (max-width: 30rem) {
       body {
         padding: 0.75rem;
@@ -329,6 +369,12 @@
     <button type="button" id="generatePdf">
       Avançar
     </button>
+
+    <footer class="footer">
+      <a class="ml-onclick-form" href="javascript:void(0)" onclick="ml('show', 'qZffSl', true)">Inscreve-te na nossa
+        Newsletter</a>
+    </footer>
+
 
   </main>
 
@@ -593,7 +639,7 @@
 
         // Aviso de validade — mesma cor do desconto
         doc.setFont("helvetica", "normal");
-        doc.setFontSize(7);
+        doc.setFontSize(8);
         doc.setTextColor(190, 35, 35);
 
         const warning =
@@ -617,7 +663,7 @@
 
         /*const pdfBlob = doc.output("blob");
         const pdfUrl = URL.createObjectURL(pdfBlob);
-
+ 
         window.open(pdfUrl, "_blank");*/
       };
 
